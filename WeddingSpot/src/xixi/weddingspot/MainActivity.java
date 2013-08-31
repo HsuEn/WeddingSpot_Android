@@ -2,7 +2,7 @@ package xixi.weddingspot;
 
 import java.util.Locale;
 
-import xixi.weddingspot.fragment_bestwish.MainFragment;
+import xixi.weddingspot.bestwish.MainFragment;
 
 
 import android.app.SearchManager;

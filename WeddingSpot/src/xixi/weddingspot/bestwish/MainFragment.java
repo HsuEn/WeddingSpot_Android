@@ -1,10 +1,14 @@
-package xixi.weddingspot.fragment_bestwish;
+package xixi.weddingspot.bestwish;
 
 import xixi.weddingspot.R;
+import xixi.weddingspot.WLog;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.ListFragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -34,28 +38,32 @@ public class MainFragment extends Fragment implements FirstFragment.Callbacks {
 			mTwoPane = true;
 		} else {
 			mPager = (ViewPager) rootView.findViewById(R.id.wish_pager);
-			mPager.setAdapter(new BestWishAdapter());
+			mPager.setAdapter(new BestWishPagerAdapter(getFragmentManager()));
 		}
 		return rootView;
 	}
 	
-	public class BestWishAdapter extends PagerAdapter {
+	public static class BestWishPagerAdapter extends FragmentPagerAdapter  {
+		static final int NUM_ITEMS = 2;
+		
+		public BestWishPagerAdapter(FragmentManager fm) {
+			super(fm);
+		}
+
+		@Override
+		public Fragment getItem(int position) {
+			if (position == 2)
+				return new SecondFragment();
+			else
+				return new FirstFragment();
+		}
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
-			return 0;
+			return 2;
 		}
-
-		@Override
-		public boolean isViewFromObject(View arg0, Object arg1) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-	
 	}
-	
-	
+		
 	/**
 	 * Callback method from {@link SpotListFragment.Callbacks} indicating that
 	 * the item with the given ID was selected.
@@ -63,21 +71,21 @@ public class MainFragment extends Fragment implements FirstFragment.Callbacks {
 	@Override
 	public void onItemSelected(String id) {
 		if (mTwoPane) {
-			// In two-pane mode, show the detail view in this activity by
-			// adding or replacing the detail fragment using a
-			// fragment transaction.
-			Bundle arguments = new Bundle();
-			arguments.putString(SpotDetailFragment.ARG_ITEM_ID, id);
-			SpotDetailFragment fragment = new SpotDetailFragment();
-			fragment.setArguments(arguments);
-			getFragmentManager().beginTransaction().replace(R.id.spot_detail_container, fragment).commit();
+//			// In two-pane mode, show the detail view in this activity by
+//			// adding or replacing the detail fragment using a
+//			// fragment transaction.
+//			Bundle arguments = new Bundle();
+//			arguments.putString(SpotDetailFragment.ARG_ITEM_ID, id);
+//			SpotDetailFragment fragment = new SpotDetailFragment();
+//			fragment.setArguments(arguments);
+//			getFragmentManager().beginTransaction().replace(R.id.spot_detail_container, fragment).commit();
 
 		} else {
-			// In single-pane mode, simply start the detail activity
-			// for the selected item ID.
-			Intent detailIntent = new Intent(this, SpotDetailActivity.class);
-			detailIntent.putExtra(SpotDetailFragment.ARG_ITEM_ID, id);
-			startActivity(detailIntent);
+//			// In single-pane mode, simply start the detail activity
+//			// for the selected item ID.
+//			Intent detailIntent = new Intent(this, SpotDetailActivity.class);
+//			detailIntent.putExtra(SpotDetailFragment.ARG_ITEM_ID, id);
+//			startActivity(detailIntent);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package xixi.weddingspot.fragment_bestwish;
+package xixi.weddingspot.bestwish;
 
 import android.app.Activity;
 import android.os.Bundle;

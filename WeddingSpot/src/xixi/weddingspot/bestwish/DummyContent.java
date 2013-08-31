@@ -1,4 +1,4 @@
-package xixi.weddingspot.fragment_bestwish;
+package xixi.weddingspot.bestwish;
 
 
 import java.util.ArrayList;
